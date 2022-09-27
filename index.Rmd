@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "Descomposición y cambio social en Barranquilla"
+author: "Jorge Mario Orozco Thomas"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
