@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Descomposición y cambio social en Barranquilla</title>
-  <meta name="description" content="Descomposición y cambio social en Barranquilla" />
+  <title> 11 Metodología | Descomposición y cambio social en Barranquilla</title>
+  <meta name="description" content=" 11 Metodología | Descomposición y cambio social en Barranquilla" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Descomposición y cambio social en Barranquilla" />
+  <meta property="og:title" content=" 11 Metodología | Descomposición y cambio social en Barranquilla" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Descomposición y cambio social en Barranquilla" />
+  <meta name="twitter:title" content=" 11 Metodología | Descomposición y cambio social en Barranquilla" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introducción.html"/>
+<link rel="prev" href="caracterizacion-socioeconomica-de-los-micronegocios-de-barranquilla.html"/>
+<link rel="next" href="resultados.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -118,24 +118,57 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Descomposición y cambio social en Barranquilla</h1>
-<p class="author"><em>Jorge Mario Orozco Thomas</em></p>
-<p class="date"><em>2022-09-29</em></p>
-</div>
-<div id="tesis-de-pregrado" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number"> 1</span> Tesis de pregrado<a href="index.html#tesis-de-pregrado" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Magíster Ángela Granger Serrano</p>
-<p>! <a href="/Users/Janus/Documents/Jorge_uni/ULTIMO%20SEMESTRE/Logo_uninorte.jpg">Alt text</a></p>
+<div id="metodología" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number"> 11</span> Metodología<a href="metodología.html#metodología" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Se parte de de los indíces de Foster, Greer &amp; Thorbecke (1984):</p>
+<p><span class="math display">\[FGT(\alpha)=\frac{1}{N}\sum_{i=1}^{q}(1-\frac{y_{i}}{z_{i}})^{\alpha}\]</span></p>
+<p>Cuando α=0 el indice refleja la proporción de pobreza, cuando α=1 refleja la brecha de pobreza y cuando α=2 la severidad de la pobreza.</p>
+<p>Luego, siguiendo la propuesta de Shorrocks-Kolenikov se reescribe la ecuación de la siguiente manera: <span class="math display">\[P_{t}=FGT_{t}=P(y_{t},L_{t},z)\]</span>. Y por ultimo, se procede a realizar la descomposicion definiendo los tres efectos:</p>
+<p><span class="math display">\[Crecimiento=P(y_{1},L_{0},z_{0})-P(y_{0},L_{0},z_{0})\]</span> <span class="math display">\[Redistribucion=P(y_{0},L_{1},z_{0})-P(y_{0},L_{0},z_{0})\]</span> <span class="math display">\[Inflacion=P(y_{0},L_{0},z_{1})-P(y_{0},L_{0},z_{0})\]</span>
+Luego, se usa la propuesta del valor de Shapley para la obtencion de la contribucion marginal de cada efecto.</p>
+<div id="ejemplo" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Ejemplo<a href="metodología.html#ejemplo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se quiere descomponer el IDH en sus componentes de salud, educación e ingreso para identificar la contribución de cada factor en el cambio al pasar un año. En el 2020 el IDH registro un valor de 0,7 y en el 2021 de 0,75. Se cuenta además con los datos de cada componente para su respectivo año resumidos en la siguiente tabla.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">salud</th>
+<th align="center">educación</th>
+<th align="center">PIB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2020</td>
+<td align="center">0,85</td>
+<td align="center">0,65</td>
+<td align="center">0,68</td>
+</tr>
+<tr class="even">
+<td>2021</td>
+<td align="center">0,89</td>
+<td align="center">0,68</td>
+<td align="center">0,69</td>
+</tr>
+</tbody>
+</table>
+<p>Se hallan los efectos de la siguiente manera:</p>
+<p><span class="math display">\[v(Salud)=[0,89+0,65+0,68]-[0,85+0,65+0,68]=0,04\]</span>
+<span class="math display">\[v(educacion)=[0,85+0,68+0,68]-[0,85+0,65+0,68]=0,03\]</span>
+<span class="math display">\[v(PIB)=[0,85+0,65+0,69]-[0,85+0,65+0,68]=0,01\]</span>
+Y finalmente, se multiplica el valor obtenido por la ponderacion proporcional de cada factor:</p>
+<p><span class="math display">\[v(salud)=1/3*0,04=0,01, v(educacion)=1/3*0,03=0,01, v(PIB)=1/3*0,01=0,03\]</span></p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introducción.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="caracterizacion-socioeconomica-de-los-micronegocios-de-barranquilla.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resultados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -166,7 +199,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Kin-George/Tesis/edit/master/index.Rmd",
+"link": "https://github.com/Kin-George/Tesis/edit/master/06-Metodologia.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -174,7 +207,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/Kin-George/Tesis/blob/master/index.Rmd",
+"link": "https://github.com/Kin-George/Tesis/blob/master/06-Metodologia.Rmd",
 "text": null
 },
 "download": null,

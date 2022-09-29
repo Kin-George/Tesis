@@ -5,5 +5,9 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+# Tesis de pregrado
+
+Magíster Ángela Granger Serrano
+
+! [Alt text](/Users/Janus/Documents/Jorge_uni/ULTIMO SEMESTRE/Logo_uninorte.jpg)
 

@@ -1,0 +1,4 @@
+# Introducción
+
+En este trabajo se realizará una descomposición y caracterización de la pobreza en el área metropolitana de Barranquilla utilizando la metodología propuesta por Kolenikov – Shorrocks de descomposición factorial de la pobreza en los componentes de crecimiento, redistribución y efecto línea de pobreza o inflación. Para la descomposición se utilizarán los datos disponibles de la Gran Encuesta Integrada de Hogares (GEIH) y para la caracterización de la pobreza se utilizarán los datos de la encuesta de micronegocios (EMICRON), cuentas nacionales y de pobreza monetaria – multidimensional, lo cuales son datos abiertos y que tienen validez externa para utilizarse en investigaciones académicas al ser realizados por el DANE.
+

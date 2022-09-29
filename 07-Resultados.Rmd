@@ -1,0 +1,37 @@
+# Resultados
+
+La estimación de los indicadores de Foster, Greer & Thorbecke para la ciudad de Barranquilla en los periodos elegidos se resumen en la siguiente tabla:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+library(dplyr)
+library(kableExtra)
+knitr::kable(Resultados,format="html",caption="Estimaciones FGT para los periodos escogidos") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right")
+
+```
+
+# Descomposicion 2010-2013
+
+Luego de aplicar la metodologia se obtuvieron los siguientes resultados:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+knitr::kable(Descomposiciones,format="html",caption="Descomposicion periodo 2010-2013") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right",full_width = TRUE)
+```
+
+
+# Descomposicion 2013-2016
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+knitr::kable(decomp_2013_2016,format="html",caption="Descomposicion periodo 2013-2016") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right",full_width = TRUE)
+```
+
+
+# Descomposicion 2016-2019
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+knitr::kable(decomp2016_2019,format="html",caption="Descomposicion periodo 2016-2019") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right",full_width = TRUE)
+```
+
