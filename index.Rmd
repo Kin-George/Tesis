@@ -1,13 +1,12 @@
 --- 
-title: "Descomposición y cambio social en Barranquilla"
+title: "Descomposición y crecimiento económico en Barranquilla A.M."
 author: "Jorge Mario Orozco Thomas"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
 # Tesis de pregrado
-
 Magíster Ángela Granger Serrano
 
-! [Alt text](/Users/Janus/Documents/Jorge_uni/ULTIMO SEMESTRE/Logo_uninorte.jpg)
+![](/Users/Janus/Documents/Jorge_uni/ULTIMO SEMESTRE/Logo_uninorte.jpg){width="350px"}
 

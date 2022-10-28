@@ -1,0 +1,10 @@
+# Introducción
+
+- Descomposición y caracterización de la pobreza en el área metropolitana de Barranquilla utilizando la metodología propuesta por Kolenikov – Shorrocks de descomposición factorial de la pobreza en los componentes de crecimiento, redistribución y efecto línea de pobreza o inflación.
+
+- Datos: Gran Encuesta Integrada de Hogares (GEIH), Cuentas nacionales, pobreza monetaria y multidimensional, encuesta a micronegocios (EMICRON).
+
+- Diagnosticar, evaluar y determinar qué tipo de crecimiento económico se ha venido gestando en la ciudad.
+
+- ¿El crecimiento económico en Barranquilla es caracterizado pro-pobre o anti-pobre?
+

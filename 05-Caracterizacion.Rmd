@@ -1,4 +1,4 @@
-# Caracterización y evolución de la pobreza en Barranquilla
+# Caracterización y evolución de la pobreza en Barranquilla A.M.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 library(ggplot2)
@@ -12,7 +12,7 @@ Primer_grafico %>%
   geom_line(aes(y=Primer_grafico$`PIB per capita`/factor,color="PIB per cápita"),size=1.5,alpha=0.8)+
   scale_y_continuous(sec.axis=sec_axis(trans=~.*factor,name="PIB per cápita"))+
   scale_color_discrete("")+
-  labs(title="Pobreza y Crecimiento en Barranquilla",
+  labs(title="Pobreza y Crecimiento en Barranquilla A.M.",
        subtitle="Evolución de la pobreza monetaria y del PIB",
        tag="Figura 1",
        caption="Fuente: Cálculos del autor con base en DANE (2022)")+
@@ -24,8 +24,9 @@ Primer_grafico %>%
 # Evolución de la pobreza comparada en las principales ciudades
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 library(dplyr)
+library(ggplot2)
 Segundo_grafico %>%
-  mutate(Segundo_grafico,isBarranquilla = Ciudad=="Barranquilla") %>%
+  mutate(Segundo_grafico,isBarranquilla = Ciudad=="Barranquilla A.M.") %>%
   ggplot(aes(x=Año, y=Pobreza, color=Ciudad))+
   geom_line(aes(linetype=isBarranquilla),size=1.5, alpha=0.8)+
   theme_minimal()+
@@ -45,9 +46,10 @@ Segundo_grafico %>%
 
 # Evolucíon del PIB de las principales ciudades
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+factor2=9
 Tercer_grafico %>%
   mutate(Tercer_grafico,isBarranquilla = Ciudad=="Barranquilla A.M.") %>%
-  ggplot(aes(x=Año,y=PIB,color=Ciudad))+
+  ggplot(aes(x=Año,y=PIB/factor2,color=Ciudad))+
   geom_line(aes(linetype=isBarranquilla),size=1.5,alpha=0.8)+
   theme_minimal()+
   labs(title="Evolucion del PIB",
@@ -60,6 +62,8 @@ Tercer_grafico %>%
         legend.text=element_text(size=10),plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position="bottom")+
   scale_color_brewer(palette="Set2")+
   scale_linetype_manual(values=c("dashed","solid"),guide="none")
+  
+  
   
 
 ```
