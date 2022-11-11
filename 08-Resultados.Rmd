@@ -1,37 +1,121 @@
 # Resultados
 
-La estimación de los indicadores de Foster, Greer & Thorbecke para la ciudad de Barranquilla en los periodos elegidos se resumen en la siguiente tabla:
+La descomposición para la incidencia de la pobreza:
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-library(dplyr)
-library(kableExtra)
-knitr::kable(Resultados,format="html",caption="Estimaciones FGT para los periodos escogidos") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right")
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4.5,fig.width=10}
+#Incidencia
+library(ggplot2)
+r1<-ggplot(resultados_2010_2013,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2010-2013")+theme(axis.title=element_text(),
+          plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+r2<-ggplot(resultados_2013_2016,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2013-2016")+theme(axis.title=element_text(),
+          plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+r3<-ggplot(resultados_2016_2019,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2016-2019")+theme(axis.title=element_text(),
+          plot.caption.position="plot",plot.caption=element_text(hjust=0))
+library(ggpubr)
+figura2<-ggarrange(r1,r2,r3,common.legend = TRUE,"legend=bottom")
+annotate_figure(figura2,fig.lab="Figura 11",fig.lab.face = "bold",
+                top=text_grob("Descomposición de la incidencia",face="bold"),
+                bottom=text_grob("Fuente: Calculos del autor en base a Kolenikov-Shorrocks (2005)",hjust=1,x=1))
 
 ```
 
-# Descomposicion 2010-2013
+# Brecha de la pobreza
 
-Luego de aplicar la metodologia se obtuvieron los siguientes resultados:
+La descomposición para la brecha:
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-knitr::kable(Descomposiciones,format="html",caption="Descomposicion periodo 2010-2013") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right",full_width = TRUE)
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4.5,fig.width=10}
+#Brecha
+r4<-ggplot(resultados2_2010_2013,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2010-2013")+theme(axis.title=element_text(),
+                                        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+r5<-ggplot(resultados2_2013_2016,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2013-2016")+theme(axis.title=element_text(),
+                                        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+r6<-ggplot(resultados2_2016_2019,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2016-2019")+theme(axis.title=element_text(),
+                                        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+figura3<-ggarrange(r4,r5,r6,common.legend = TRUE,"legend=bottom")
+annotate_figure(figura3,fig.lab="Figura 12",fig.lab.face = "bold",
+                top=text_grob("Descomposición de la brecha de la pobreza",face="bold"),
+                bottom=text_grob("Fuente: Calculos del autor en base a Kolenikov-Shorrocks (2005)",hjust=1,x=1))
 ```
 
 
-# Descomposicion 2013-2016
+# Severidad de la pobreza
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-knitr::kable(decomp_2013_2016,format="html",caption="Descomposicion periodo 2013-2016") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right",full_width = TRUE)
+La descomposición para la severidad de la pobreza:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4.5, fig.width=10}
+#Severidad
+r7<-ggplot(resultados3_2010_2013,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2010-2013")+theme(axis.title=element_text(),
+                                        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+r8<-ggplot(resultados3_2013_2016,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2013-2016")+theme(axis.title=element_text(),
+                                        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+r9<-ggplot(resultados3_2016_2019,aes(x=Efecto,y=Proporcion))+
+  geom_hline(yintercept=0)+
+  geom_bar(stat="identity",color="blue",fill="royalblue")+
+  scale_x_discrete(limits=c("Crecimiento","Redistribucion","Inflacion"))+
+  theme_minimal()+
+  labs(
+    subtitle="Periodo 2016-2019")+theme(axis.title=element_text(),
+                                        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+
+figura4<-ggarrange(r7,r8,r9,common.legend = TRUE,"legend=bottom")
+annotate_figure(figura4,fig.lab="Figura 13",fig.lab.face = "bold",
+                top=text_grob("Descomposición de la severidad de la pobreza",face="bold"),
+                bottom=text_grob("Fuente: Calculos del autor en base a Kolenikov-Shorrocks (2005)",hjust=1,x=1))
 ```
 
-
-# Descomposicion 2016-2019
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-knitr::kable(decomp2016_2019,format="html",caption="Descomposicion periodo 2016-2019") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped","hover"), position="float_right",full_width = TRUE)
-```
 

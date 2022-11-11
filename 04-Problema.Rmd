@@ -1,4 +1,4 @@
-# Planteamiento del Problema
+# Motivación
 
 - Pobreza monetaria en el área metropolitana de Barranquilla en 2010: 40%.
 - en el año 2018: 24.9%.
@@ -9,7 +9,17 @@
 
 - ¿Estructura productiva?
 
+- Nuevo debate y línea de investigación
 
+# Objetivos
+
+- Objetivo general: Realizar una descomposición y caracterización de la evolución de la pobreza en Barranquilla entre 2010 y 2019 con un enfoque de inclusión productiva e inclusión social para determinar el efecto del crecimiento económico sobre la reducción de la pobreza y los principales retos para los próximos años.
+
+- Objetivos especificos: 
+- Caracterizar la pobreza monetaria y la pobreza multidimensional en Barranquilla.
+- Descomponer el cambio de la pobreza en sus efectos de crecimiento, redistribución e inflación de la línea de pobreza utilizando la metodología de Kolenikov – Shorrocks.
+- Identificar por qué vías (Crecimiento, Redistribución, Línea de pobreza) se ha producido la reducción de la pobreza en Barranquilla.
+- Identificar retos que obstaculicen la reducción de la pobreza en Barranquilla.
 
 
 

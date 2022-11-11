@@ -8,5 +8,5 @@ site: bookdown::bookdown_site
 # Tesis de pregrado
 Magíster Ángela Granger Serrano
 
-![](/Users/Janus/Documents/Jorge_uni/ULTIMO SEMESTRE/Descomposicion/Tesis/Logo_uninorte.jpg){width="350px"}
+
 

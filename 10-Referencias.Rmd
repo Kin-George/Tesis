@@ -1,0 +1,29 @@
+# Referencias
+<font size="1">
+
+- Secretaría Distrital de Integración Social/Roberto Ángulo (2019). Pobreza y cambio social en Bogotá.
+
+- Ravallion, M., \& Datt, G. (1999). When is growth pro-poor? Evidence from the diverse experiences of India's states. Evidence from the Diverse Experiences of India's States (December 1999).
+
+- Datt, G. y Ravallion, M. (1992). Growth and redistribution components of changes in poverty measures: A decomposition with applications to Brazil and India in the 1980’s. Journal of Development Economics, 38(2), 275-295.
+
+- Lustig, N., Arias, O., \& Rigolini, J. (2001). Reducción de la pobreza y crecimiento económico: la doble causalidad.
+
+- Sánchez, R. M. (2015). Descomposiciones de los cambios en la pobreza en Colombia 2002-2012. Desarrollo y sociedad, 75, 349-398.
+
+- Kolenikov, S. y Shorrocks, A. (2005). A Decomposition Analysis of Regional Poverty in Russia. Review of Development Economics, 9(1), 25-46.
+
+- Kakwani, N. y Subbarao, N. (1990). Rural Poverty and Its Alleviation in India.
+
+- Kakwani, N. (1993). Poverty and economic growth with application to Cote d'Ivoire. Review of income and wealth, 39(2), 121-139.
+
+- Kakwani, N., \& Son, H. H. (2008). Poverty equivalent growth rate. Review of Income and Wealth, 54(4), 643-655.
+
+- Ariza, J. F., \& Retajac, A. (2020). Descomposición y determinantes de la pobreza monetaria urbana en Colombia. Un estudio a nivel de ciudades. Estudios Gerenciales, 36(155), 167-176.
+
+- Rodrik, D. (2021, 14 octubre). The Metamorphosis of Growth Policy. Project Syndicate. 
+
+- Foster, J., Greer, J., \& Thorbecke, E. (1984). A class of decomposable poverty measures. Econometrica: journal of the econometric society, 761-766.
+
+- Eslava, M., Meléndez, M., \& Urdaneta, N. (2021). Market concentration, market fragmentation and inequality in Latin America. UNDP working paper. et al.
+</font>

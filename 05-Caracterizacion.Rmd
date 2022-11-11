@@ -1,6 +1,6 @@
-# Caracterización y evolución de la pobreza en Barranquilla A.M.
+# Pobreza y crecimiento en Barranquilla A.M.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
 library(ggplot2)
 library(ggthemes)
 library(dplyr)
@@ -12,8 +12,7 @@ Primer_grafico %>%
   geom_line(aes(y=Primer_grafico$`PIB per capita`/factor,color="PIB per cápita"),size=1.5,alpha=0.8)+
   scale_y_continuous(sec.axis=sec_axis(trans=~.*factor,name="PIB per cápita"))+
   scale_color_discrete("")+
-  labs(title="Pobreza y Crecimiento en Barranquilla A.M.",
-       subtitle="Evolución de la pobreza monetaria y del PIB",
+  labs(subtitle="Evolución de la pobreza monetaria y del PIB",
        tag="Figura 1",
        caption="Fuente: Cálculos del autor con base en DANE (2022)")+
   theme_clean()+
@@ -21,8 +20,8 @@ Primer_grafico %>%
 
 ```
 
-# Evolución de la pobreza comparada en las principales ciudades
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+# Comparación con otras ciudades
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
 library(dplyr)
 library(ggplot2)
 Segundo_grafico %>%
@@ -44,20 +43,20 @@ Segundo_grafico %>%
 
 ```
 
-# Evolucíon del PIB de las principales ciudades
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+# Evolución del PIB
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
 factor2=9
 Tercer_grafico %>%
   mutate(Tercer_grafico,isBarranquilla = Ciudad=="Barranquilla A.M.") %>%
   ggplot(aes(x=Año,y=PIB/factor2,color=Ciudad))+
   geom_line(aes(linetype=isBarranquilla),size=1.5,alpha=0.8)+
   theme_minimal()+
-  labs(title="Evolucion del PIB",
+  labs(title="Evolución del PIB",
        subtitle="Como ha crecido el PIB per cápita en las principales ciudades?",
        x="Años",
        y="PIB per cápita",
        tag="Figura 3",
-       caption="Fuente: Calculos del autor con base en DANE (2022)")+
+       caption="Fuente: cálculos del autor con base en DANE (2022)")+
   theme(axis.title=element_text(),
         legend.text=element_text(size=10),plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position="bottom")+
   scale_color_brewer(palette="Set2")+
