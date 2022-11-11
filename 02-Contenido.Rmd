@@ -2,7 +2,9 @@
 
 - Introducción
 
-- Planteamiento del problema
+- Motivación
+
+- Objetivos
 
 - Caracterización y evolución de la pobreza en Barranquilla A.M.
 
