@@ -1,6 +1,7 @@
 # Caracterizacíon Socioeconomica
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
+Cuarto_grafico$`Clase social`<-as.factor(Cuarto_grafico$`Clase social`)
 library(dplyr)
 library(ggplot2)
 g1<-Cuarto_grafico %>%
@@ -11,6 +12,7 @@ g1<-Cuarto_grafico %>%
        x="Años",
        y="Proporcion",)+
   scale_color_brewer(palette="Set2")
+
 
 #Segundo grafico-Bogota
 g2<-Cuarto_grafico_2 %>%
@@ -73,7 +75,7 @@ annotate_figure(figura,fig.lab = "Figura 4",fig.lab.face = "bold",
 
 # Indice de pobreza multidimensional
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Quinto_grafico %>%
   ggplot(aes(x=reorder(Ciudad,-IPM),y=IPM,fill=IPM))+
   geom_bar(stat="identity")+

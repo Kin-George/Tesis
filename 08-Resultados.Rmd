@@ -2,7 +2,7 @@
 
 La descomposición para la incidencia de la pobreza:
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4.5,fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 #Incidencia
 library(ggplot2)
 r1<-ggplot(resultados_2010_2013,aes(x=Efecto,y=Proporcion))+
@@ -43,7 +43,7 @@ annotate_figure(figura2,fig.lab="Figura 11",fig.lab.face = "bold",
 
 La descomposición para la brecha:
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4.5,fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 #Brecha
 r4<-ggplot(resultados2_2010_2013,aes(x=Efecto,y=Proporcion))+
   geom_hline(yintercept=0)+
@@ -83,7 +83,7 @@ annotate_figure(figura3,fig.lab="Figura 12",fig.lab.face = "bold",
 
 La descomposición para la severidad de la pobreza:
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4.5, fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 #Severidad
 r7<-ggplot(resultados3_2010_2013,aes(x=Efecto,y=Proporcion))+
   geom_hline(yintercept=0)+
