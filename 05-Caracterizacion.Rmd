@@ -5,18 +5,25 @@ library(ggplot2)
 library(ggthemes)
 library(dplyr)
 factor<-450
-Primer_grafico %>%
-  ggplot(aes(x=Año))+
-  geom_line(aes(y=Pobreza,color="Pobreza"),size=1.5,alpha=0.8)+
-  geom_line(aes(y=Primer_grafico$`Pobreza extrema`,color="Pobreza extrema"),size=1.5,alpha=0.8)+
-  geom_line(aes(y=Primer_grafico$`PIB per capita`/factor,color="PIB per cápita"),size=1.5,alpha=0.8)+
-  scale_y_continuous(sec.axis=sec_axis(trans=~.*factor,name="PIB per cápita"))+
+factor<-450
+grafico_base = pobreza_y_crecimiento %>%
+  ggplot(aes(x=año))+
+  geom_line(aes(y=Pobreza, color="Pobreza"), linewidth=1.5, alpha=0.8)+
+  geom_line(aes(y=`Pobreza extrema`, color="Pobreza extrema"), linewidth=1.5, alpha = 0.8)+
+  geom_line(aes(y=PIB/factor, color="PIB"), linewidth=1.5, alpha=0.8)+
+  scale_y_continuous(sec.axis=sec_axis(trans=~.*factor,name="PIB per capita"))+
   scale_color_discrete("")+
   labs(subtitle="Evolución de la pobreza monetaria y del PIB",
+       x = "Año",
        tag="Figura 1",
-       caption="Fuente: Cálculos del autor con base en DANE (2022)")+
-  theme_clean()+
-  theme(plot.tag.position="topleft",plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position = "bottom", text=element_text(family="Rubik"))
+       caption="Fuente: DANE (2022)")+
+  theme_minimal()+
+  theme(plot.tag.position="topleft",plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position = "bottom")
+
+library(gifski)
+grafico_animado = grafico_base+
+  transition_reveal(año)
+grafico_animado
 
 ```
 
