@@ -1,6 +1,6 @@
 # Caracterizacíon Socioeconomica
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Cuarto_grafico$`Clase social`<-as.factor(Cuarto_grafico$`Clase social`)
 library(dplyr)
 library(ggplot2)
@@ -75,7 +75,7 @@ annotate_figure(figura,fig.lab = "Figura 5",fig.lab.face = "bold",
 
 # Indice de pobreza multidimensional
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.height=4.5, fig.width=9.5}
 Quinto_grafico %>%
   ggplot(aes(x=reorder(Ciudad,-IPM),y=IPM,fill=IPM))+
   geom_bar(stat="identity")+
@@ -109,7 +109,7 @@ Sexto_grafico %>%
 
 # Personal Ocupado en micronegocios
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 micronegocios_gra1 %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
   geom_bar(stat="identity")+
@@ -129,7 +129,7 @@ micronegocios_gra1 %>%
 
 # Caracterizacion Micronegocios
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Septimo_grafico %>%
   ggplot(aes(x=Año,y=Proporcion,fill=Clase))+
   geom_bar(stat="identity")+
@@ -146,7 +146,7 @@ Septimo_grafico %>%
 
 # Retos Identificados
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width=10}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 mg2<-micronegocios_gra2 %>%
   ggplot(aes(x=proporcion,y=reto,fill=proporcion))+
   geom_bar(stat="identity")+
