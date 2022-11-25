@@ -1,177 +1,417 @@
 # Caracterizacíon Socioeconomica
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-Cuarto_grafico$`Clase social`<-as.factor(Cuarto_grafico$`Clase social`)
-library(dplyr)
 library(ggplot2)
-g1<-Cuarto_grafico %>%
+library(dplyr)
+library(forcats)
+g1=Cuarto_grafico %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase social`))+
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity",width=0.3)+
   theme_minimal()+
-  labs(title="Barranquilla A.M.",
-       x="Años",
-       y="Proporcion",)+
-  scale_color_brewer(palette="Set2")
+  scale_fill_brewer(palette="Paired")+
+  labs(
+    title="Barranquilla A.M.",
+    x="Años",
+    y=""
+  )
 
-
-#Segundo grafico-Bogota
-g2<-Cuarto_grafico_2 %>%
+g2=Cuarto_grafico_2 %>%
+  mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity",width=0.3)+
   theme_minimal()+
-  labs(title="Bogotá",
-       x="Años",
-       y="Proporcion",)+
-  scale_color_brewer(palette="Set2")
+  scale_fill_brewer(palette="Paired")+
+  labs(
+    title="Bogotá",
+    x="Años",
+    y=""
+  )
 
-#Tercer grafico-Bucaramanga A.M.
-g3<-Cuarto_grafico_3 %>%
+g3=Cuarto_grafico_3 %>%
+  mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity",width=0.3)+
   theme_minimal()+
-  labs(title="Bucaramanga A.M.",
-       x="Años",
-       y="Proporcion",)+
-  scale_color_brewer(palette="Set2")
+  scale_fill_brewer(palette="Paired")+
+  labs(
+    title="Bucaramanga A.M.",
+    x="Años",
+    y=""
+  )
 
-#Cuarto grafico-Cali A.M.
-g4<-Cuarto_grafico_4 %>%
+g4=Cuarto_grafico_4 %>%
+  mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity",width=0.3)+
   theme_minimal()+
-  labs(title="Cali A.M.",
-       x="Años",
-       y="Proporcion",)+
-  scale_color_brewer(palette="Set2")
+  scale_fill_brewer(palette="Paired")+
+  labs(
+    title="Calí A.M.",
+    x="Años",
+    y=""
+  )
 
-#Quinto grafico-Cartagena
-g5<-Cuarto_grafico_5 %>%
+g5=Cuarto_grafico_5 %>%
+  mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity",width=0.3)+
   theme_minimal()+
-  labs(title="Cartagena",
-       x="Años",
-       y="Proporcion",)+
-  scale_color_brewer(palette="Set2")
+  scale_fill_brewer(palette="Paired")+
+  labs(
+    title="Cartagena",
+    x="Años",
+    y=""
+  )
 
-#Sexto grafico-Medellin A.M.
-g6<-Cuarto_grafico_6 %>%
+g6=Cuarto_grafico_6 %>%
+  mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity",width=0.3)+
   theme_minimal()+
-  labs(title="Medellin A.M.",
-       x="Años",
-       y="Proporcion",)+
-  scale_color_brewer(palette="Set2")
+  scale_fill_brewer(palette="Paired")+
+  labs(
+    title="Medellín A.M.",
+    x="Años",
+    y=""
+  )
 
-#Uniendo graficos
 library(ggpubr)
 figura<-ggarrange(g1,g2,g3,g4,g5,g6,common.legend = TRUE, legend="bottom")
-annotate_figure(figura,fig.lab = "Figura 5",fig.lab.face = "bold",
-                top=text_grob("Distribucion de clases sociales",face="bold"),
+annotate_figure(figura,fig.lab = "",fig.lab.face = "bold",
+                top=text_grob("Distribución de clases sociales",face="bold"),
                 bottom =text_grob("Fuente: DANE (2022)",hjust=1,x=1))
   
 ```
 
 # Indice de pobreza multidimensional
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.height=4.5, fig.width=9.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Quinto_grafico %>%
   ggplot(aes(x=reorder(Ciudad,-IPM),y=IPM,fill=IPM))+
-  geom_bar(stat="identity")+
-  theme_minimal()+
+  geom_bar(stat="identity", width=0.5)+
+  geom_text(label=(Quinto_grafico$IPM),
+            nudge_x=0.015,nudge_y=1,
+            check_overlap=T)+
+  theme_bw()+
   labs(title="IPM Principales Ciudades - 2018",
        subtitle="Mas alla del ingreso, cual es la situación de la pobreza?",
        x="",
        y="IPM",
-       tag="Figura 6",
-       caption="Fuente:DANE (2022)")+
-  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="none")
+       tag="",
+       caption="Fuente: DANE (2022)")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="none",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
 ```
 
 # Componentes del IPM para Barranquilla
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4.5, fig.width=9.5}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Sexto_grafico %>%
-  ggplot(aes(x=Proporcion,y=Sexto_grafico$`Componentes IPM`))+
-  geom_bar(stat="identity",fill="royalblue4")+
-  theme_minimal()+
-  scale_y_discrete(limits=c("Servicios publicos y estado vivienda", "Condiciones de la niñez y juventud","Salud", "Condiciones educativas del hogar", "Trabajo"))+
-  labs(title="Componentes IPM",
-       x=" ",
-       y=" ",
-       tag="Figura 7",
-       caption="Fuente: DANE (2022)")+
-  theme(axis.title=element_text(),
-        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+  mutate(`Componentes IPM`=fct_relevel(`Componentes IPM`,"Vivienda","Cond. De la niñez", "Salud","Cond. Educativas","Trabajo")) %>%
+  ggplot(aes(`Componentes IPM`,y=Proporcion))+
+  geom_bar(stat="identity", width=0.5, fill="royalblue4")+
+  coord_flip()+
+  geom_text(label=(Sexto_grafico$Proporcion),
+            nudge_x=0.025,nudge_y=3,
+            check_overlap=T)+
+  theme_bw()+
+  labs(
+    title="Descomposición del IPM por dimensión",
+    subtitle="Barranquilla A.M. - 2018",
+    tag="",
+    y="",
+    x="Dimensión",
+    caption="Fuente: DANE (2022)"
+  )+theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="none",
+          plot.tag.position="topright",
+          legend.title=element_text(color="black",size=10,face="bold"),
+          plot.subtitle=element_text(color="grey",size=10,face="bold"),
+          axis.title.x=element_text(color="black",size=12,face="bold"),
+          axis.title.y=element_text(color="black",size=12,face="bold"))
   
 ```
 
-# Personal Ocupado en micronegocios
+# Informalidad barranquilla
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-micronegocios_gra1 %>%
-  ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity")+
-  scale_x_continuous(breaks=c(2019,2020))+
+p1=Octavografico %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Vulnerable", "Pobre",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2011",
+    y="",
+    fill=""
+  )+
   theme_minimal()+
-  labs(title="Personal ocupado en micronegocios",
-       x=" ",
-       y=" ",
-       tag="Figura 8",
-       caption="Fuente: cálculos del autor con base en DANE (2022)")+
-  theme(axis.title=element_text(),
-        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+  scale_fill_brewer(palette="Paired")
+
+p2=Octavografico_1 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Vulnerable", "Pobre",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2012",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p3=Octavografico_2 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Vulnerable", "Pobre",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2013",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p4=Octavografico_3 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2014",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p5=Octavografico_4 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2015",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p6=Octavografico_5 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2016",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")    
+
+p7=Octavografico_6 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2017",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p8=Octavografico_7 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2018",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p9=Octavografico_8 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2019",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p10=Octavografico_9 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2020",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+p11=Octavografico_10 %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
+                                    "Clase Media", "Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+  geom_bar(stat="identity", width=0.5)+
+  labs(
+    title="Barranquilla A.M. - 2021",
+    y="",
+    fill=""
+  )+
+  theme_minimal()+
+  scale_fill_brewer(palette="Paired")
+
+figura2<-ggarrange(p6,p7,p8,p9,p10,p11,common.legend = TRUE, legend="bottom")
+annotate_figure(figura2,fig.lab = "",fig.lab.face = "bold",
+                top=text_grob("Informalidad por Clases Sociales",face="bold"),
+                bottom =text_grob("Fuente: Cálculos del autor con base en DANE (2022)",hjust=1,x=1))
 
 ```
 
 
 
-# Caracterizacion Micronegocios
+# Distribucion del empleo
 
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+Noveno %>%
+  ggplot(aes(x=estructura,y=Proporcion, fill=tipo))+
+  geom_bar(stat="identity", width = 0.5)+
+  coord_flip()+
+  theme_bw()+
+  labs(
+    title="Distribución del empleo por tamaño de empresa y cuenta propia",
+    subtitle="Barranquilla A.M. - 2021",
+    tag="",
+    y="Proporción (%)",
+    x="",
+    fill="",
+    caption="Fuente: Cálculos del autor con base en DANE (2022)"
+  )+theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="bottom",
+          plot.tag.position="topright",
+          legend.title=element_text(color="black",size=10,face="bold"),
+          plot.subtitle=element_text(color="grey",size=10,face="bold"),
+          axis.title.x=element_text(color="black",size=12,face="bold"),
+          axis.title.y=element_text(color="black",size=12,face="bold"))+
+  scale_fill_brewer(palette="Paired")
+```
+
+# Micronegocios
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+Decimografico %>%
+  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre","Vulnerable", "Clase Media","Clase Alta")) %>%
+  ggplot(aes(x=`Clase social`,y=Proporcion))+
+  geom_bar(stat="identity", width = 0.5, fill="royalblue4")+
+  geom_text(label=Decimografico$Proporcion,
+            nudge_x=0.025,nudge_y=2,check_overlap = T)+
+  theme_bw()+
+  labs(
+    title="Distribución de los ocupados en micronegocios por clases sociales",
+    subtitle="Barranquilla A.M. - 2021",
+    tag="",
+    y="Proporción (%)",
+    x="",
+    caption="Fuente: Cálculos del autor con base en DANE (2022)"
+  )+theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="none",
+          plot.tag.position="topright",
+          legend.title=element_text(color="black",size=10,face="bold"),
+          plot.subtitle=element_text(color="grey",size=10,face="bold"),
+          axis.title.x=element_text(color="black",size=12,face="bold"),
+          axis.title.y=element_text(color="black",size=12,face="bold"))
+
+
+```
+
+# Micronegocios 2
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Septimo_grafico %>%
+  mutate(Clase=fct_relevel(Clase,"Alta","Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=Clase))+
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity", width = 0.5)+
   scale_x_continuous(breaks=c(2020,2021))+
-  theme_minimal()+
-  labs(title="Micronegocios: analisis por clases sociales",
+  scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
+  labs(title="Propietarios de los micronegocios por clases sociales",
+       subtitle="Barranquilla A.M. (2020 - 2021)",
        x=" ",
-       y=" ",
-       tag="Figura 8",
-       caption="Fuente: Cálculos del autor con base en DANE (2022)")+
-  theme(axis.title=element_text(),
-        plot.caption.position="plot",plot.caption=element_text(hjust=0))
+       y="Proporción (%)",
+       tag="",
+       fill="",
+       caption="Fuente: Cálculos del autor con base en DANE EMICRON (2022)")+
+        theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="right",
+         plot.tag.position="topright",
+         legend.title=element_text(color="black",size=10,face="bold"),
+         plot.subtitle=element_text(color="grey",size=10,face="bold"),
+         axis.title.x=element_text(color="black",size=12,face="bold"),
+         axis.title.y=element_text(color="black",size=12,face="bold"))
 ```
 
-# Retos Identificados
 
+# retos micronegocios
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-mg2<-micronegocios_gra2 %>%
-  ggplot(aes(x=proporcion,y=reto,fill=proporcion))+
-  geom_bar(stat="identity")+
+mpg1<-micronegocios_gra2 %>%
+  ggplot(aes(x=proporcion,y=reto))+
+  geom_bar(stat="identity", width = 0.5, fill="Royalblue4")+
   scale_y_discrete(limits=c("Capital semilla", "Prestamos bancarios", "Ahorros personales"))+
-  theme_minimal()+
-  labs(title="",
-       subtitle="",
+  theme_bw()+
+  labs(title="Metodo de financiación 
+       del micronegocio",
+       subtitle="Barranquilla A.M. 2020",
        x="",
-       y="Proporción",)
-       
+       y="Proporción (%)",
+       caption="EMICROM - DANE (2022)")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="right",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
+
 
 #segundo reto
-mg1<-micronegocios_gra3 %>%
-  ggplot(aes(x=reto,y=proporcion,fill=proporcion))+
-  geom_bar(stat="identity")+
-  theme_minimal()+
-  labs(title="",
-       subtitle="",
+mpg2<-micronegocios_gra3 %>%
+  ggplot(aes(x=reto,y=Proporcion1, fill=Tipo))+
+  geom_bar(stat="identity", width = 0.5)+
+  theme_bw()+
+  scale_fill_brewer(palette="Paired")+
+  labs(title="Micronegocios que no poseen TICS",
+       subtitle="Barranquilla A.M. 2020",
        x="",
-       y="Proporción")
+       y="Proporción (%)",tag="",
+       fill="",
+       caption="Fuente: EMICRON - DANE (2022)")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="right",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
 
 #uniendo graficos
-library(ggpubr)
-figura2<-ggarrange(mg1,mg2,common.legend = TRUE, legend="none")
-annotate_figure(figura2,fig.lab = "Figura 10",fig.lab.face = "bold",
+
+figura2<-ggarrange(mpg1,mpg2)
+annotate_figure(figura2,fig.lab = "",fig.lab.face = "bold",
                 top=text_grob("Retos existentes en los micronegocios",face="bold"),
                 bottom =text_grob("Fuente: DANE (2020)",hjust=1,x=1))
 

@@ -5,22 +5,29 @@ library(ggplot2)
 library(ggthemes)
 library(dplyr)
 factor<-450
-factor<-450
 grafico_base = pobreza_y_crecimiento %>%
   ggplot(aes(x=año))+
-  geom_line(aes(y=Pobreza, color="Pobreza"), linewidth=1.5, alpha=0.8)+
-  geom_line(aes(y=`Pobreza extrema`, color="Pobreza extrema"), linewidth=1.5, alpha = 0.8)+
-  geom_line(aes(y=PIB/factor, color="PIB"), linewidth=1.5, alpha=0.8)+
-  scale_y_continuous(sec.axis=sec_axis(trans=~.*factor,name="PIB per capita"))+
+  geom_line(aes(y=Pobreza, color="Pobreza"), linewidth=1.25, alpha=0.5)+
+  geom_line(aes(y=`Pobreza extrema`, color="Pobreza extrema"), linewidth=1.25, alpha = 0.5)+
+  geom_line(aes(y=PIB/factor, color="PIB"), linewidth=1.25, alpha=0.5,linetype=5)+
+  scale_y_continuous(sec.axis=sec_axis(trans=~.*factor,name="PIB per cápita (miles de pesos)"))+
   scale_color_discrete("")+
-  labs(subtitle="Evolución de la pobreza monetaria y del PIB",
+  labs(subtitle="Barranquilla A.M. 2010 - 2021",
+       title="Evolución de la pobreza monetaria y del PIB",
        x = "Año",
-       tag="Figura 1",
-       caption="Fuente: DANE (2022)")+
-  theme_minimal()+
-  theme(plot.tag.position="topleft",plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position = "bottom")
+       y = "Pobreza (%)",
+       tag="",
+       caption="Fuente: Pobreza monetaria - Valor Agregado (PIB), DANE (2022)")+
+  theme_bw()+
+  scale_x_continuous(breaks = c(2010,2013,2016,2019,2021))+
+  theme(legend.title=element_text(color="black",size=12,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"),
+        plot.tag.position="topleft",plot.caption.position="plot",plot.caption=element_text(color="black",size=12,hjust=0),legend.position = "bottom")
 
 library(gifski)
+library(gganimate)
 grafico_animado = grafico_base+
   transition_reveal(año)
 animate(grafico_animado,end_pause=60)
@@ -29,23 +36,27 @@ animate(grafico_animado,end_pause=60)
 
 # Comparación con otras ciudades
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-library(dplyr)
-library(ggplot2)
 Segundo_grafico %>%
   mutate(Segundo_grafico,isBarranquilla = Ciudad=="Barranquilla A.M.") %>%
   ggplot(aes(x=Año, y=Pobreza, color=Ciudad))+
-  geom_line(aes(linetype=isBarranquilla),size=1.5, alpha=0.8)+
-  theme_minimal()+
+  geom_line(aes(linetype=isBarranquilla),linewidth=1.25, alpha=0.5)+
+  theme_bw()+
+  scale_x_continuous(breaks = c(2011,2013,2016,2019,2021))+
   labs(title="Evolución de la pobreza",
-       subtitle="Pobreza monetaria de las principales ciudades",
+       subtitle="Pobreza monetaria de las principales ciudades 2011 - 2021",
        x="Años",
-       y="Pobreza",
-       tag="Figura 2",
+       y="Pobreza (%)",
+       tag="",
        color="Ciudad",
-       caption="Fuente: DANE (2022)")+
+       caption="Fuente: Pobreza monetaria - DANE (2022)")+
   theme(axis.title=element_text(),
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"),
+        plot.tag.position="topright",
         legend.text=element_text(size=10),plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position="bottom")+
-  scale_color_brewer(palette="Set2")+
+  scale_color_brewer(palette="Dark2")+
   scale_linetype_manual(values=c("dashed","solid"),guide="none")
 
 
@@ -55,43 +66,61 @@ Segundo_grafico %>%
 # Evolución del PIB - Barranquilla
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 #Barranquilla 
-grafico_base3 = PIB_Barranquilla %>%
-  ggplot(aes(x=Año))+
-  geom_line(aes(y=Barranquilla, color="Barranquilla"), size=1.5, alpha=0.8)+
-  theme_minimal()+
-  labs(title="Evolución del PIB per capita",
-       y="",
-       subtitle="Barranquilla A.M.",
-       tag="Figura 3",
-       color="",
-       caption="Fuente: cálculos del autor con base en DANE (2022)")+
-  theme(axis.title=element_text(),
-        legend.text=element_text(size=10),plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position="none")
-grafico_base3
+Tercer_grafico %>%
+  mutate(Tercer_grafico,isBarranquilla = Ciudad=="Barranquilla A.M.") %>%
+  ggplot(aes(x=Año, y=Indice, color=Ciudad))+
+  geom_line(aes(linetype=isBarranquilla),linewidth=1.25, alpha=0.8)+
+  theme_bw()+
+  scale_x_continuous(breaks = c(2010,2013,2016,2019,2021))+
+  labs(title="Índice de la evolución del PIB (Año base = 2010)",
+       subtitle="Como ha crecido el PIB per cápita en las principales ciudades?",
+       x="Años",
+       y="Var. porcentual (%)",
+       tag="",
+       color="Ciudad",
+       caption="Fuente: Cálculos del autor con base en DANE (2022)")+
+  theme(plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"),
+        axis.title=element_text(),
+        legend.text=element_text(size=10),plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position="bottom")+
+  scale_color_brewer(palette="Set2")+
+  scale_linetype_manual(values=c("dashed","solid"),guide="none")
 ```
 
 
 # evolucion principales ciudades
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-factor2=9
+factor2=9000
 grafico_base4 = PIB_Barranquilla %>%
   ggplot(aes(x=Año))+
-  geom_line(aes(y=Barranquilla/factor2, color="Barranquilla"), size=1.5, alpha=0.8)+
-  geom_line(aes(y=Bogotá/factor2, color="Bogotá"), size=1.5, alpha=0.8)+
-  geom_line(aes(y=Bucaramanga/factor2, color="Bucaramanga"), size=1.5, alpha=0.8)+
-  geom_line(aes(y=Cali/factor2, color="Cali"), size=1.5, alpha=0.8)+
-  geom_line(aes(y=Cartagena/factor2, color="Cartagena"), size=1.5, alpha=0.8)+
-  geom_line(aes(y=Medellin/factor2, color="Medellin"), size=1.5, alpha=0.8)+
-  geom_line(aes(y=Nacional/factor2, color="Nacional"), size=1.5, alpha=0.8)+
-  theme_minimal()+
-  labs(title="Evolución del PIB per capita",
-       y="",
-       subtitle="Barranquilla A.M.",
-       tag="Figura 4",
-       color="Ciudad",
-       caption="Fuente: Cálculos del autor con base en DANE (2022)")+
-  theme(axis.title=element_text(),
+  geom_line(aes(y=Barranquilla/factor2,color="Barranquilla"), linewidth=1.25, alpha = 0.5, linetype=5)+
+  geom_line(aes(y=Bogotá/factor2, color="Bogotá"), linewidth=1.25, alpha = 0.5, linetype=5)+
+  geom_line(aes(y=Bucaramanga/factor2, color="Bucaramanga"), linewidth=1.25, alpha=0.5,linetype=5)+
+  geom_line(aes(y=Cali/factor2, color="Cali"), linewidth=1.25,alpha=0.5,linetype=5)+
+  geom_line(aes(y=Cartagena/factor2, color="Cartagena"),linewidth=1.25,alpha=0.5,linetype=5)+
+  geom_line(aes(y=Medellin/factor2,color="Medellin"), linewidth=1.25,alpha=0.5,linetype=5)+
+  geom_line(aes(y=Nacional/factor2, color="Nacional"),linewidth=1.25,alpha=0.5,linetype=5)+
+  theme_bw()+
+  scale_color_discrete("")+
+  labs(
+    title="Evolución del PIB",
+    subtitle="Como ha crecido el PIB per cápita en las principales ciudades?",
+    x="Año",
+    y="PIB per cápita (miles de pesos)",
+    caption="Fuente: Cálculos del autor con base en DANE (2022)"
+  )+
+  scale_x_continuous(breaks = c(2010,2013,2016,2019,2021))+
+  theme(plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"),
+        axis.title=element_text(),
         legend.text=element_text(size=10),plot.caption.position="plot",plot.caption=element_text(hjust=0),legend.position="bottom")
+  
 
 library(gganimate)
 grafico_animado3 = grafico_base4+
