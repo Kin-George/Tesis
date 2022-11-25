@@ -4,6 +4,7 @@ La descomposición para la incidencia de la pobreza:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='left'}
 #Incidencia
+#Incidencia
 library(ggplot2)
 library(gridExtra)
 r1<-ggplot(resultados_2010_2013,aes(x=Efecto,y=Proporcion))+
@@ -77,10 +78,10 @@ r4<-ggplot(resultados_2019_2021,aes(x=Efecto,y=Proporcion))+
            axis.title.y=element_text(color="black",size=12,face="bold"))
   
 library(ggpubr)
-figura2<-grid.arrange(r1,r2,r3,r4, nrow=2)
-annotate_figure(figura2,fig.lab="",fig.lab.face = "bold",
-                top=text_grob("Descomposición de la incidencia de la pobreza",face="bold"),
-                bottom=text_grob("Fuente: Calculos del autor en base a Kolenikov-Shorrocks (2005)",hjust=1,x=1))
+figura3<-ggarrange(r1,r2,r3,r4,common.legend = TRUE,legend="bottom")
+annotate_figure(figura3,fig.lab = "", fig.lab.face= "bold",
+                top=text_grob("Descomposición de la incidencia", face="bold"),
+                bottom=text_grob("Fuente: Cálculos del autor con base en Kolenikov-Shorrocks (2005)", hjust=1,x=1))
 
 ```
 
