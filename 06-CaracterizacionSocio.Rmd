@@ -1,86 +1,97 @@
 # Caracterizacíon Socioeconomica
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-library(ggplot2)
-library(dplyr)
 library(forcats)
+
 g1=Cuarto_grafico %>%
   mutate(`Clase social`=fct_relevel(`Clase social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase social`))+
   geom_bar(stat="identity",width=0.3)+
-  theme_minimal()+
+  theme_bw()+
   scale_fill_brewer(palette="Paired")+
   labs(
     title="Barranquilla A.M.",
-    x="Años",
+    x="",
     y=""
-  )
+  )+theme(plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+          legend.key=element_rect(fill="#F0F1EB"),
+          legend.background = element_rect(fill="#F0F1EB"))
 
 g2=Cuarto_grafico_2 %>%
   mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity",width=0.3)+
-  theme_minimal()+
+  geom_bar(stat="identity",width=0.5)+
+  theme_bw()+
   scale_fill_brewer(palette="Paired")+
   labs(
     title="Bogotá",
-    x="Años",
+    x="",
     y=""
-  )
+  )+theme(plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+          legend.key=element_rect(fill="#F0F1EB"),
+          legend.background = element_rect(fill="#F0F1EB"))
 
 g3=Cuarto_grafico_3 %>%
   mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity",width=0.3)+
-  theme_minimal()+
+  geom_bar(stat="identity",width=0.5)+
+  theme_bw()+
   scale_fill_brewer(palette="Paired")+
   labs(
     title="Bucaramanga A.M.",
-    x="Años",
+    x="",
     y=""
-  )
+  )+theme(plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+          rect=element_rect(fill="#F0F1EB"),
+          legend.background = element_rect(fill="#F0F1EB"))
 
 g4=Cuarto_grafico_4 %>%
   mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity",width=0.3)+
-  theme_minimal()+
+  geom_bar(stat="identity",width=0.5)+
+  theme_bw()+
   scale_fill_brewer(palette="Paired")+
   labs(
     title="Calí A.M.",
-    x="Años",
+    x="",
     y=""
-  )
+  )+theme(plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+          rect=element_rect(fill="#F0F1EB"),
+          legend.background = element_rect(fill="#F0F1EB"))
 
 g5=Cuarto_grafico_5 %>%
   mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity",width=0.3)+
-  theme_minimal()+
+  geom_bar(stat="identity",width=0.5)+
+  theme_bw()+
   scale_fill_brewer(palette="Paired")+
   labs(
     title="Cartagena",
-    x="Años",
+    x="",
     y=""
-  )
+  )+theme(plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+          rect=element_rect(fill="#F0F1EB"),
+          legend.background = element_rect(fill="#F0F1EB"))
 
 g6=Cuarto_grafico_6 %>%
   mutate(`Clase Social`=fct_relevel(`Clase Social`,"Clase Alta","Clase Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=`Clase Social`))+
-  geom_bar(stat="identity",width=0.3)+
-  theme_minimal()+
+  geom_bar(stat="identity",width=0.5)+
+  theme_bw()+
   scale_fill_brewer(palette="Paired")+
   labs(
     title="Medellín A.M.",
-    x="Años",
+    x="",
     y=""
-  )
+  )+theme(plot.background = element_rect(fill="#F0F1EB", colour="#F0F1EB"),
+          legend.key=element_rect(fill="#F0F1EB"),
+          legend.background = element_rect(fill="#F0F1EB"))
 
 library(ggpubr)
 figura<-ggarrange(g1,g2,g3,g4,g5,g6,common.legend = TRUE, legend="bottom")
 annotate_figure(figura,fig.lab = "",fig.lab.face = "bold",
                 top=text_grob("Distribución de clases sociales",face="bold"),
-                bottom =text_grob("Fuente: DANE (2022)",hjust=1,x=1))
+                bottom =text_grob("Fuente: Pobreza monetaria, Caracterización clases sociales, DANE (2021)",hjust=1,x=1)) 
   
 ```
 
@@ -91,7 +102,7 @@ Quinto_grafico %>%
   ggplot(aes(x=reorder(Ciudad,-IPM),y=IPM,fill=IPM))+
   geom_bar(stat="identity", width=0.5)+
   geom_text(label=(Quinto_grafico$IPM),
-            nudge_x=0.015,nudge_y=1,
+            nudge_x=0.015,nudge_y=0.5,
             check_overlap=T)+
   theme_bw()+
   labs(title="IPM Principales Ciudades - 2018",
@@ -99,11 +110,14 @@ Quinto_grafico %>%
        x="",
        y="IPM",
        tag="",
-       caption="Fuente: DANE (2022)")+
+       caption="Fuente: Pobreza multidimensional, Censo Económico (2018)")+
   theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="none",
         plot.tag.position="topright",
         legend.title=element_text(color="black",size=10,face="bold"),
-        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        plot.subtitle=element_text(color="black",size=10,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB", colour="#F0F1EB"),
+        legend.key=element_rect(fill="#F0F1EB"),
+        legend.background = element_rect(fill="#F0F1EB"),
         axis.title.x=element_text(color="black",size=12,face="bold"),
         axis.title.y=element_text(color="black",size=12,face="bold"))
 ```
@@ -117,7 +131,7 @@ Sexto_grafico %>%
   geom_bar(stat="identity", width=0.5, fill="royalblue4")+
   coord_flip()+
   geom_text(label=(Sexto_grafico$Proporcion),
-            nudge_x=0.025,nudge_y=3,
+            nudge_x=0.025,nudge_y=1,
             check_overlap=T)+
   theme_bw()+
   labs(
@@ -126,12 +140,14 @@ Sexto_grafico %>%
     tag="",
     y="",
     x="Dimensión",
-    caption="Fuente: DANE (2022)"
+    caption="Fuente: Pobreza multidimensional, Censo Económico (2018)"
   )+theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="none",
           plot.tag.position="topright",
           legend.title=element_text(color="black",size=10,face="bold"),
-          plot.subtitle=element_text(color="grey",size=10,face="bold"),
+          plot.subtitle=element_text(color="black",size=10,face="bold"),
           axis.title.x=element_text(color="black",size=12,face="bold"),
+          plot.background = element_rect(fill="#F0F1EB", colour="#F0F1EB"),
+          legend.key=element_rect(fill="#F0F1EB"),
           axis.title.y=element_text(color="black",size=12,face="bold"))
   
 ```
@@ -139,153 +155,98 @@ Sexto_grafico %>%
 # Informalidad barranquilla
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-p1=Octavografico %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Vulnerable", "Pobre",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+p1=pobres %>%
+  mutate(tipo=fct_relevel(tipo,"formal","informal")) %>%
+  ggplot(aes(x=Año,y=Proporcion, fill=tipo))+
   geom_bar(stat="identity", width=0.5)+
+  scale_x_continuous(breaks = c(2016,2017,2018,2019,2020,2021))+
   labs(
-    title="Barranquilla A.M. - 2011",
-    y="",
+    title="Informalidad de la población pobre",
+    subtitle="Barranquilla A.M. 2016 - 2021",
+    y="Proporción (%)",
     fill=""
   )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
+  theme_bw()+
+  scale_fill_brewer(palette="Paired")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="top",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB", colour="#F0F1EB"),
+        legend.key=element_rect(fill="#F0F1EB"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
 
-p2=Octavografico_1 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Vulnerable", "Pobre",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+p2=Vulnerables %>%
+  mutate(tipo=fct_relevel(tipo,"formal","informal")) %>%
+  ggplot(aes(x=Año,y=Proporcion, fill=tipo))+
   geom_bar(stat="identity", width=0.5)+
+  scale_x_continuous(breaks = c(2016,2017,2018,2019,2020,2021))+
   labs(
-    title="Barranquilla A.M. - 2012",
-    y="",
+    title="Informalidad de la población vulnerable",
+    subtitle="Barranquilla A.M. 2016 - 2021",
+    y="Proporción (%)",
     fill=""
   )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
+  theme_bw()+
+  scale_fill_brewer(palette="Paired")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="top",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB", colour="#F0F1EB"),
+        legend.key=element_rect(fill="#F0F1EB"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
 
-p3=Octavografico_2 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Vulnerable", "Pobre",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+p3=Clase_media %>%
+  mutate(tipo=fct_relevel(tipo,"formal","informal")) %>%
+  ggplot(aes(x=Año,y=Proporcion, fill=tipo))+
   geom_bar(stat="identity", width=0.5)+
+  scale_x_continuous(breaks = c(2016,2017,2018,2019,2020,2021))+
   labs(
-    title="Barranquilla A.M. - 2013",
-    y="",
+    title="Informalidad de la poblacion clase media",
+    subtitle="Barranquilla A.M. 2016 - 2021",
+    y="Proporción (%)",
     fill=""
   )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
+  theme_bw()+
+  scale_fill_brewer(palette="Paired")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="top",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB", colour="#F0F1EB"),
+        legend.key=element_rect(fill="#F0F1EB"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
 
-p4=Octavografico_3 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
+p4=Clase_alta %>%
+  mutate(tipo=fct_relevel(tipo,"formal","informal")) %>%
+  ggplot(aes(x=Año,y=Proporcion, fill=tipo))+
   geom_bar(stat="identity", width=0.5)+
+  scale_x_continuous(breaks = c(2016,2017,2018,2019,2020,2021))+
   labs(
-    title="Barranquilla A.M. - 2014",
-    y="",
+    title="Informalidad de la poblacion clase alta",
+    subtitle="Barranquilla A.M. 2016 - 2021",
+    y="Proporción (%)",
     fill=""
   )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
+  theme_bw()+
+  scale_fill_brewer(palette="Paired")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="top",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB", colour="#F0F1EB"),
+        legend.key=element_rect(fill="#F0F1EB"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
 
-p5=Octavografico_4 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
-  geom_bar(stat="identity", width=0.5)+
-  labs(
-    title="Barranquilla A.M. - 2015",
-    y="",
-    fill=""
-  )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
-
-p6=Octavografico_5 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
-  geom_bar(stat="identity", width=0.5)+
-  labs(
-    title="Barranquilla A.M. - 2016",
-    y="",
-    fill=""
-  )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")    
-
-p7=Octavografico_6 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
-  geom_bar(stat="identity", width=0.5)+
-  labs(
-    title="Barranquilla A.M. - 2017",
-    y="",
-    fill=""
-  )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
-
-p8=Octavografico_7 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
-  geom_bar(stat="identity", width=0.5)+
-  labs(
-    title="Barranquilla A.M. - 2018",
-    y="",
-    fill=""
-  )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
-
-p9=Octavografico_8 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
-  geom_bar(stat="identity", width=0.5)+
-  labs(
-    title="Barranquilla A.M. - 2019",
-    y="",
-    fill=""
-  )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
-
-p10=Octavografico_9 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
-  geom_bar(stat="identity", width=0.5)+
-  labs(
-    title="Barranquilla A.M. - 2020",
-    y="",
-    fill=""
-  )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
-
-p11=Octavografico_10 %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre", "Vulnerable",
-                                    "Clase Media", "Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=proporcion, fill=tipo))+
-  geom_bar(stat="identity", width=0.5)+
-  labs(
-    title="Barranquilla A.M. - 2021",
-    y="",
-    fill=""
-  )+
-  theme_minimal()+
-  scale_fill_brewer(palette="Paired")
-
-figura2<-ggarrange(p6,p7,p8,p9,p10,p11,common.legend = TRUE, legend="bottom")
+figura2<-ggarrange(p1,p2,p3,p4,common.legend = TRUE, legend="top")
 annotate_figure(figura2,fig.lab = "",fig.lab.face = "bold",
                 top=text_grob("Informalidad por Clases Sociales",face="bold"),
-                bottom =text_grob("Fuente: Cálculos del autor con base en DANE (2022)",hjust=1,x=1))
+                bottom =text_grob("Fuente: Elaboración propia con base en GEIH (2016-2021)",hjust=1,x=1))
 
 ```
 
@@ -295,6 +256,7 @@ annotate_figure(figura2,fig.lab = "",fig.lab.face = "bold",
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Noveno %>%
+  mutate(tipo=fct_relevel(tipo,"formal","informal")) %>%
   ggplot(aes(x=estructura,y=Proporcion, fill=tipo))+
   geom_bar(stat="identity", width = 0.5)+
   coord_flip()+
@@ -306,11 +268,14 @@ Noveno %>%
     y="Proporción (%)",
     x="",
     fill="",
-    caption="Fuente: Cálculos del autor con base en DANE (2022)"
-  )+theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="bottom",
+    caption="Fuente: Cálculos del autor con base en GEIH (2021)"
+  )+theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="top",
           plot.tag.position="topright",
           legend.title=element_text(color="black",size=10,face="bold"),
-          plot.subtitle=element_text(color="grey",size=10,face="bold"),
+          plot.subtitle=element_text(color="black",size=10,face="bold"),
+          plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+          rect=element_rect(fill="#F0F1EB"),
+          legend.background = element_rect(fill="#F0F1EB"),
           axis.title.x=element_text(color="black",size=12,face="bold"),
           axis.title.y=element_text(color="black",size=12,face="bold"))+
   scale_fill_brewer(palette="Paired")
@@ -319,37 +284,11 @@ Noveno %>%
 # Micronegocios
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-Decimografico %>%
-  mutate(`Clase social`=fct_relevel(`Clase social`,"Pobre","Vulnerable", "Clase Media","Clase Alta")) %>%
-  ggplot(aes(x=`Clase social`,y=Proporcion))+
-  geom_bar(stat="identity", width = 0.5, fill="royalblue4")+
-  geom_text(label=Decimografico$Proporcion,
-            nudge_x=0.025,nudge_y=2,check_overlap = T)+
-  theme_bw()+
-  labs(
-    title="Distribución de los ocupados en micronegocios por clases sociales",
-    subtitle="Barranquilla A.M. - 2021",
-    tag="",
-    y="Proporción (%)",
-    x="",
-    caption="Fuente: Cálculos del autor con base en DANE (2022)"
-  )+theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="none",
-          plot.tag.position="topright",
-          legend.title=element_text(color="black",size=10,face="bold"),
-          plot.subtitle=element_text(color="grey",size=10,face="bold"),
-          axis.title.x=element_text(color="black",size=12,face="bold"),
-          axis.title.y=element_text(color="black",size=12,face="bold"))
-
-
-```
-
-# Micronegocios 2
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 Septimo_grafico %>%
   mutate(Clase=fct_relevel(Clase,"Alta","Media", "Vulnerable","Pobre")) %>%
   ggplot(aes(x=Año,y=Proporcion,fill=Clase))+
   geom_bar(stat="identity", width = 0.5)+
-  scale_x_continuous(breaks=c(2020,2021))+
+  scale_x_continuous(breaks=c(2019,2021))+
   scale_fill_brewer(palette = "Paired")+
   theme_bw()+
   labs(title="Propietarios de los micronegocios por clases sociales",
@@ -358,17 +297,21 @@ Septimo_grafico %>%
        y="Proporción (%)",
        tag="",
        fill="",
-       caption="Fuente: Cálculos del autor con base en DANE EMICRON (2022)")+
-        theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="right",
-         plot.tag.position="topright",
-         legend.title=element_text(color="black",size=10,face="bold"),
-         plot.subtitle=element_text(color="grey",size=10,face="bold"),
-         axis.title.x=element_text(color="black",size=12,face="bold"),
-         axis.title.y=element_text(color="black",size=12,face="bold"))
+       caption="Fuente: Cálculos del autor con base en DANE EMICRON (2019-2021)")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="right",
+        plot.tag.position="topright",
+        legend.title=element_text(color="black",size=10,face="bold"),
+        plot.subtitle=element_text(color="black",size=10,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+        rect=element_rect(fill="#F0F1EB"),
+        legend.background = element_rect(fill="#F0F1EB"),
+        axis.title.x=element_text(color="black",size=12,face="bold"),
+        axis.title.y=element_text(color="black",size=12,face="bold"))
+
+
 ```
 
-
-# retos micronegocios
+# Micronegocios 2
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 mpg1<-micronegocios_gra2 %>%
   ggplot(aes(x=proporcion,y=reto))+
@@ -377,14 +320,17 @@ mpg1<-micronegocios_gra2 %>%
   theme_bw()+
   labs(title="Metodo de financiación 
        del micronegocio",
-       subtitle="Barranquilla A.M. 2020",
+       subtitle="Barranquilla A.M. 2021",
        x="",
        y="Proporción (%)",
-       caption="EMICROM - DANE (2022)")+
+       caption="")+
   theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="right",
         plot.tag.position="topright",
         legend.title=element_text(color="black",size=10,face="bold"),
         plot.subtitle=element_text(color="grey",size=10,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+        rect=element_rect(fill="#F0F1EB"),
+        legend.background = element_rect(fill="#F0F1EB"),
         axis.title.x=element_text(color="black",size=12,face="bold"),
         axis.title.y=element_text(color="black",size=12,face="bold"))
 
@@ -396,16 +342,19 @@ mpg2<-micronegocios_gra3 %>%
   theme_bw()+
   scale_fill_brewer(palette="Paired")+
   labs(title="Micronegocios que no poseen TICS",
-       subtitle="Barranquilla A.M. 2020",
+       subtitle="Barranquilla A.M. 2021",
        x="",
        y="Proporción (%)",tag="",
        fill="",
-       caption="Fuente: EMICRON - DANE (2022)")+
-  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="right",
+       caption="")+
+  theme(plot.caption.position="plot",plot.caption=element_text(hjust=1),legend.position="top",
         plot.tag.position="topright",
         legend.title=element_text(color="black",size=10,face="bold"),
         plot.subtitle=element_text(color="grey",size=10,face="bold"),
         axis.title.x=element_text(color="black",size=12,face="bold"),
+        plot.background = element_rect(fill="#F0F1EB",colour="#F0F1EB"),
+        rect=element_rect(fill="#F0F1EB"),
+        legend.background = element_rect(fill="#F0F1EB"),
         axis.title.y=element_text(color="black",size=12,face="bold"))
 
 #uniendo graficos
@@ -413,7 +362,8 @@ mpg2<-micronegocios_gra3 %>%
 figura2<-ggarrange(mpg1,mpg2)
 annotate_figure(figura2,fig.lab = "",fig.lab.face = "bold",
                 top=text_grob("Retos existentes en los micronegocios",face="bold"),
-                bottom =text_grob("Fuente: DANE (2020)",hjust=1,x=1))
-
+                bottom =text_grob("Fuente: EMICRON (2021)",hjust=1,x=1))
 ```
+
+
 

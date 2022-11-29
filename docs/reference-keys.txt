@@ -14,9 +14,9 @@ informalidad-barranquilla
 distribucion-del-empleo
 micronegocios
 micronegocios-2
-retos-micronegocios
 metodología
 ejemplo
 resultados
+resultados-sin-micronegocios
 conclusiones
 referencias
